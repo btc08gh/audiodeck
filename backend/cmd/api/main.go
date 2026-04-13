@@ -13,6 +13,7 @@ type features struct {
 }
 
 type application struct {
+	version   string
 	logger    *slog.Logger
 	mediaRoot *os.Root
 	features  features
@@ -46,6 +47,7 @@ func main() {
 	defer root.Close()
 
 	app := &application{
+		version:   "1.3.0",
 		logger:    logger,
 		mediaRoot: root,
 		features: features{

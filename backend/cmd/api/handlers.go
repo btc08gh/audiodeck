@@ -186,8 +186,9 @@ func (app *application) getAudioMetadataHandler(w http.ResponseWriter, r *http.R
 	}
 }
 
-func (app *application) getFeaturesHandler(w http.ResponseWriter, r *http.Request) {
-	response := Features{
+func (app *application) getInfoHandler(w http.ResponseWriter, r *http.Request) {
+	response := Info{
+		Version:        app.version,
 		EnableLogScale: app.features.enableLogScale,
 	}
 

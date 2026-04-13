@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type Features from "../core/Features";
+import type Info from "../core/Info";
 
 export type SpectrogramScale = "logarithmic" | "linear";
 
@@ -20,10 +20,10 @@ const getInitialScale = (): SpectrogramScale => {
  * and reliability issues. It can be enabled via the ENABLE_LOG_SCALE
  * environment variable for users who want to opt-in.
  */
-export default function useScaleToggle(features?: Features) {
+export default function useScaleToggle(info?: Info) {
   const [scale, setScale] = useState<SpectrogramScale>(getInitialScale);
 
-  const isEnabled = features?.enableLogScale ?? false;
+  const isEnabled = info?.enableLogScale ?? false;
   const effectiveScale = isEnabled ? scale : "linear";
 
   const toggleScale = () => {

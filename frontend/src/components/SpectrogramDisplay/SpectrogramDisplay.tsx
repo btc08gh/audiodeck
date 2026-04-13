@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router";
 import WaveSurfer from "wavesurfer.js";
 import Spectrogram from "wavesurfer.js/dist/plugins/spectrogram.js";
 import useAudioMetadata from "../../hooks/useAudioMetadata";
-import useFeatures from "../../hooks/useFeatures";
+import useInfo from "../../hooks/useInfo";
 import useScaleToggle from "../../hooks/useScaleToggle";
 import { formatDuration } from "../../utils/formatDuration";
 import IconLink from "../Button/IconLink";
@@ -32,8 +32,8 @@ export default function SpectrogramDisplay() {
     error: metadataError,
   } = useAudioMetadata(filePath);
 
-  const { data: features, isLoading: isFeaturesLoading } = useFeatures();
-  const { scale, ToggleButton } = useScaleToggle(features);
+  const { data: info, isLoading: isInfoLoading } = useInfo();
+  const { scale, ToggleButton } = useScaleToggle(info);
 
   useEffect(() => {
     if (
@@ -41,7 +41,7 @@ export default function SpectrogramDisplay() {
       !metadata ||
       !containerRef.current ||
       !wrapperRef.current ||
-      isFeaturesLoading
+      isInfoLoading
     ) {
       return;
     }
@@ -90,7 +90,7 @@ export default function SpectrogramDisplay() {
       clearTimeout(slowLoadTimer);
       waveSurfer.destroy();
     };
-  }, [filePath, isFeaturesLoading, metadata, scale]);
+  }, [filePath, isInfoLoading, metadata, scale]);
 
   if (!filePath) {
     return (

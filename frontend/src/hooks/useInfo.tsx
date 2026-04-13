@@ -1,23 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
 import type ApiError from "../core/ApiError";
-import type Features from "../core/Features";
+import type Info from "../core/Info";
 
-const fetchFeatures = async () => {
-  const response = await fetch("/v1/features");
+const fetchInfo = async () => {
+  const response = await fetch("/v1/info");
 
   if (!response.ok) {
     const error = (await response.json()) as ApiError;
     throw new Error(error.error);
   }
 
-  const data = (await response.json()) as Features;
+  const data = (await response.json()) as Info;
   return data;
 };
 
-export default function useFeatures() {
+export default function useInfo() {
   return useQuery({
-    queryKey: ["features"],
-    queryFn: fetchFeatures,
+    queryKey: ["info"],
+    queryFn: fetchInfo,
     staleTime: Infinity,
   });
 }

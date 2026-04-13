@@ -17,6 +17,7 @@ type AudioMetadata struct {
 	Duration   float64 `json:"duration"`   // in seconds
 }
 
-type Features struct {
-	EnableLogScale bool `json:"enableLogScale"`
+type Info struct {
+	Version        string `json:"version"`
+	EnableLogScale bool   `json:"enableLogScale"`
 }
